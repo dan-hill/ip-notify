@@ -17,11 +17,7 @@ def sendUpdate(ip):
 ip = json.load(urlopen('http://httpbin.org/ip'))['origin']    
 log = os.popen("tail -10 ip-log").readlines()
 
-print ip,
-print log,
-
-if ip in log:
-else:
+if not(ip in log):
     with open('ip-log', 'w') as f:
         f.write(ip)
         sendUpdate(ip)
