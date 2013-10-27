@@ -21,10 +21,7 @@ print ip,
 print log,
 
 if ip in log:
-    print "they are same"
-    sendUpdate(ip)
 else:
-    print "they are not the same"
     with open('ip-log', 'w') as f:
         f.write(ip)
         sendUpdate(ip)
