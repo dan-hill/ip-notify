@@ -14,10 +14,11 @@ def sendUpdate(ip):
     p = Popen(['/usr/sbin/sendmail', '-t'], stdin=PIPE)
     p.communicate(msg.as_string())
 
-ip = json.load(urlopen('http://httpbin.org/ip'))['origin']    
-log = os.popen("tail -10 ip-log").readlines()
-
-if not(ip in log):
-    with open('ip-log', 'w') as f:
-        f.write(ip)
-        sendUpdate(ip)
+if __name__ == "__main__":
+    ip = json.load(urlopen('http://httpbin.org/ip'))['origin']    
+    log = os.popen("tail -10 ip-log").readlines()
+    
+    if not(ip in log):
+        with open('ip-log', 'w') as f:
+            f.write(ip)
+            sendUpdate(ip)
